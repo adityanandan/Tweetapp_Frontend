@@ -1,0 +1,16 @@
+.btn{
+    margin: 5px;
+}
+.card{
+    margin-bottom:3px ;
+    background-color: #e3f2fd;
+}
+.container-fluid{
+    background-color: #063557; 
+}
+.list-group-item{
+    background-color: #e3f2fd;
+}
+p{
+font-weight:500;
+}

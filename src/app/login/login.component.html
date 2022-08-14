@@ -1,0 +1,130 @@
+<div id="sect1">
+<div class="col-md-4 offset-md-4 container" >
+    <div class="card">
+        <img src="/assets/logo.jpg" alt="logo" class="logo">
+      <h4 class="card-header">Login</h4>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              formControlName="userName"
+              class="form-control" 
+              [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+            />
+            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+              <div *ngIf="f.userName.errors.required">Username is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+          </div>
+          <div *ngIf="invalid" class="mb-3 text-danger">Check Username and Password</div>
+          <br>
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Login
+            </button>
+                <a id="forgotbtn" class="btn btn-secondary ml-3" (click)="showResetPasswordModal()"
+                > Forgot Password?</a
+              >
+          </div>
+        </form>
+        <br>
+        <div>Don’t have an account?<a routerLink='../register' class="link">Sign up</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="resetPasswordModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Generate new Password</h5>
+        </div>
+        <div *ngIf="!passwordResetComplete">
+          <form
+            [formGroup]="resetPasswordForm"
+            (ngSubmit)="resetPasswordSubmit()"
+          >
+            <div class="modal-body">
+              <input
+                type="text"
+                placeholder="Username"
+                class="w-100"
+                formControlName="username"
+                [ngClass]="{
+                  'is-invalid':
+                    resetSubmitted && resetPasswordForm.controls.username.errors
+                }"
+              />
+              <div
+                *ngIf="
+                  resetSubmitted && resetPasswordForm.controls.username.errors
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="resetPasswordForm.controls.username.errors.required">
+                  Username is required
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                (click)="hideResetPasswordModal()"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="resetPasswordForm.controls.username.errors">
+                Reset Password
+              </button>
+            </div>
+          </form>
+          <div *ngIf="showError" >
+            <b>Password could not be reset.
+              Try with correct username.</b>
+          </div>
+        </div>
+        <div *ngIf="passwordResetComplete">
+            
+          <div
+            *ngIf="
+              resetPasswordValue !== null || resetPasswordValue !== undefined
+            "
+          >
+           <b>Password reset successfully. Please login with new password:<br></b>
+            {{ resetPasswordValue }}
+          </div>
+          
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              (click)="hideResetPasswordModal()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

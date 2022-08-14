@@ -1,0 +1,40 @@
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color:#e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img
+          src="/assets/twitter_circle-512.png"
+          alt=""
+          width="60"
+          height="48"
+          class="d-inline-block"
+        /> <b> TweetApp</b>
+      </a>
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item ">
+          <a class="nav-link" *ngIf="isLoggedIn()" routerLink="/home"><b>Home</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLoggedIn()" routerLink="/users"
+            ><b>Users</b></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isLoggedIn()" routerLink="/register"
+            ><b>Signup</b></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" *ngIf="isLoggedIn()" (click)="logout()"
+            ><b>Logout</b></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" *ngIf="!isLoggedIn()" routerLink="/login"
+            ><b>Login</b></a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  

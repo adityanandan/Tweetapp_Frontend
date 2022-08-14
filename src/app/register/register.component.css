@@ -1,0 +1,10 @@
+#select {
+  /* background-image: url('/assets/pexels.jpg'); */
+  background-color: #063557; 
+}
+.card{
+  background-color: #e3f2fd;
+}
+.container{
+  padding:10px;
+}

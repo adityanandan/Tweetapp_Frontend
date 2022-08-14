@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card mt-3" >
+        <img
+          class="card-img-top"
+          src="/assets/profile_pic.png"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">@{{ currentUser.username }}</h5>
+          <p class="card-text">
+            Welcome, {{ currentUser.firstName }} {{ currentUser.lastName }},
+            Tweet your thoughts :)
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Contact Number: +91 {{ currentUser.contactNumber }}
+          </li>
+          <li class="list-group-item">Email Id: {{ currentUser.email }}</li>
+        </ul>
+    
+        <div class="card-body">
+          <a [routerLink]="['/passwordReset', currentUser.username]" class="card-link">Reset Password</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row row-cols-3 g-4">
+        <div *ngFor="let user of userList">
+          <div class="col">
+          <div class="card ml-5 col mt-3" style="width: 18rem">
+            <img src="/assets/profile_pic.png"  [ngClass]="user.username == currentUser.username ?'card-img-top':'card-img-top grayscale'" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">
+                <a
+                  class="link-primary"
+                  [routerLink]="['/tweets', user.username]"
+                  >@{{ user.username }}</a
+                >
+              </h5>
+              <div class="card-text">
+                <ul>
+                  <li>{{user.firstName}} {{user.lastName}}</li>
+                  <li>{{ user.email }}</li>
+                  <li>{{ user.contactNumber }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
